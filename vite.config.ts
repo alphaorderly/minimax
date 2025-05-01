@@ -3,9 +3,10 @@ import react from '@vitejs/plugin-react-swc';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
+import { seoPlugin } from './src/plugins/seo-plugin';
 
 export default defineConfig({
-    plugins: [react(), tsconfigPaths(), tailwindcss()],
+    plugins: [react(), tsconfigPaths(), tailwindcss(), seoPlugin()],
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'src'),

@@ -15,6 +15,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import { useTranslation } from 'react-i18next';
 
 const gameReducer = (state: GameState, action: GameAction): GameState => {
     switch (action.type) {
@@ -98,6 +99,8 @@ const gameReducer = (state: GameState, action: GameAction): GameState => {
 };
 
 const DisappearTicTacToe = () => {
+    const { t } = useTranslation();
+
     const initialState: GameState = {
         firstPlayer: [],
         secondPlayer: [],
@@ -290,22 +293,25 @@ const DisappearTicTacToe = () => {
                             id="ai-toggle"
                             checked={isAI}
                             onCheckedChange={toggleAI}
-                        />
+                        />{' '}
                         <label
                             htmlFor="ai-toggle"
                             className="cursor-pointer text-sm font-medium"
                         >
-                            {isAI ? 'AI 켜짐' : 'AI 꺼짐'}
+                            {isAI
+                                ? t('games.disappearTicTacToe.ai.on')
+                                : t('games.disappearTicTacToe.ai.off')}
                         </label>
                     </div>
 
                     {isAI && (
                         <div className="flex flex-wrap items-center gap-2">
+                            {' '}
                             <label
                                 htmlFor="difficulty"
                                 className="cursor-pointer text-sm font-medium"
                             >
-                                난이도:
+                                {t('games.disappearTicTacToe.ai.difficulty')}
                             </label>
                             <Select
                                 defaultValue={difficulty.toString()}
@@ -318,18 +324,33 @@ const DisappearTicTacToe = () => {
                                     className="w-[100px]"
                                     aria-label="난이도 선택"
                                 >
+                                    {' '}
                                     <SelectValue>
                                         {difficulty === 0
-                                            ? '쉬움'
+                                            ? t(
+                                                  'games.disappearTicTacToe.ai.easy'
+                                              )
                                             : difficulty === 1
-                                              ? '보통'
-                                              : '어려움'}
+                                              ? t(
+                                                    'games.disappearTicTacToe.ai.medium'
+                                                )
+                                              : t(
+                                                    'games.disappearTicTacToe.ai.hard'
+                                                )}
                                     </SelectValue>
-                                </SelectTrigger>
+                                </SelectTrigger>{' '}
                                 <SelectContent>
-                                    <SelectItem value="0">쉬움</SelectItem>
-                                    <SelectItem value="1">보통</SelectItem>
-                                    <SelectItem value="2">어려움</SelectItem>
+                                    <SelectItem value="0">
+                                        {t('games.disappearTicTacToe.ai.easy')}
+                                    </SelectItem>
+                                    <SelectItem value="1">
+                                        {t(
+                                            'games.disappearTicTacToe.ai.medium'
+                                        )}
+                                    </SelectItem>
+                                    <SelectItem value="2">
+                                        {t('games.disappearTicTacToe.ai.hard')}
+                                    </SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -348,7 +369,7 @@ const DisappearTicTacToe = () => {
                                     !playerFirst && 'border-r-0'
                                 )}
                             >
-                                플레이어 먼저
+                                {t('games.disappearTicTacToe.ai.playerFirst')}
                             </Button>
                             <Button
                                 onClick={
@@ -358,18 +379,18 @@ const DisappearTicTacToe = () => {
                                 size="sm"
                                 className="rounded-l-none"
                             >
-                                AI 먼저
+                                {t('games.disappearTicTacToe.ai.aiFirst')}
                             </Button>
                         </div>
                     )}
-                </div>
-
+                </div>{' '}
                 <div className="bg-accent/50 rounded-md px-4 py-2 text-center">
                     <h2 className="text-xl font-medium">
-                        {state.turn === 'first' ? 'X의 턴' : 'O의 턴'}
+                        {state.turn === 'first'
+                            ? t('games.disappearTicTacToe.status.xTurn')
+                            : t('games.disappearTicTacToe.status.oTurn')}
                     </h2>
                 </div>
-
                 <div className="flex max-w-full flex-col items-center overflow-x-hidden">
                     <div className="mx-auto w-full max-w-[320px]">
                         {Array.from({ length: 3 }, (_, row) => (
@@ -419,24 +440,25 @@ const DisappearTicTacToe = () => {
                             </div>
                         ))}
                     </div>
-                </div>
-
+                </div>{' '}
                 {winner && (
                     <div className="bg-accent/50 rounded-md px-4 py-2 text-center">
                         <h2 className="text-xl font-medium">
-                            {winner === 'first' ? 'X 승리!' : 'O 승리!'}
+                            {winner === 'first'
+                                ? t('games.disappearTicTacToe.status.xWins')
+                                : t('games.disappearTicTacToe.status.oWins')}
                         </h2>
                     </div>
                 )}
-
                 {checkEmpty() || (
                     <div className="mt-4 flex justify-center">
+                        {' '}
                         <Button
                             onClick={resetGame}
                             variant="outline"
                             className="w-full"
                         >
-                            게임 초기화
+                            {t('common.resetGame')}
                         </Button>
                     </div>
                 )}
