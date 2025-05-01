@@ -3,9 +3,19 @@ import react from '@vitejs/plugin-react-swc';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
+import { seoPlugin } from './src/plugins/seo-plugin';
+import Pages from 'vite-plugin-pages';
 
 export default defineConfig({
-    plugins: [react(), tsconfigPaths(), tailwindcss()],
+    plugins: [
+        react(),
+        tsconfigPaths(),
+        tailwindcss(),
+        seoPlugin(),
+        Pages({
+            dirs: 'src/pages',
+        }),
+    ],
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'src'),

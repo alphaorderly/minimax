@@ -1,7 +1,12 @@
-import Root from './pages/Root';
+import Root from './pages/Main/MainRoute';
+import { SEOProvider } from './components/ui/seo';
 
 const App = () => {
-    return <Root />;
+    return (
+        <SEOProvider>
+            <Root />
+        </SEOProvider>
+    );
 };
 
 export default App;

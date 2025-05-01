@@ -1,21 +1,47 @@
 {
-    "title": "타입이 적용된 Vite React 템플릿",
-    "subtitle": "현대적인 리액트 프로젝트의 시작점",
-    "libraries": "포함된 라이브러리",
-    "tools": "개의 도구",
-    "customize": "원하는 라이브러리를 추가하여 이 템플릿을 커스터마이징하세요",
-    "search": "라이브러리 검색...",
-    "searchStarWars": "스타워즈 캐릭터 검색...",
-    "loading": "로딩 중",
-    "noResults": "검색 결과가 없습니다",
-    "birthYear": "출생년도",
-    "backToHome": "홈으로 돌아가기",
-    "characterNotFound": "캐릭터를 찾을 수 없습니다",
-    "gender": "성별",
-    "height": "키",
-    "mass": "체중",
-    "hairColor": "머리 색상",
-    "eyeColor": "눈 색상",
-    "enterMessage": "메시지를 입력하세요",
-    "submit": "전송"
+  "common": {
+    "appName": "미니맥스 게임",
+    "appSubtitle": "더 많은 미니 게임이 곧 출시됩니다!",
+    "version": "버전 1.0.0",
+    "loading": "로딩 중...",
+    "playGame": "게임 시작",
+    "resetGame": "게임 초기화"
+  },
+  "navigation": {
+    "menu": "메뉴 토글",
+    "games": "게임들",
+    "availableGames": "이용 가능한 게임",
+    "selectGame": "플레이할 게임을 선택하세요"
+  },
+  "landing": {
+    "title": "미니맥스 게임",
+    "subtitle": "두뇌를 자극하고 재미있게 즐길 수 있는 전략 미니 게임 컬렉션",
+    "ourGames": "게임 목록"
+  },
+  "games": {
+    "disappearTicTacToe": {
+      "title": "사라지는 틱택토",
+      "description": "각 플레이어가 보드에 3개의 말만 놓을 수 있는 전략적인 틱택토 변형 게임입니다. 4번째 말을 놓으면 가장 오래된 말이 사라집니다.",
+      "ai": {
+        "toggle": "AI 모드",
+        "on": "AI 켜짐",
+        "off": "AI 꺼짐",
+        "difficulty": "난이도:",
+        "easy": "쉬움",
+        "medium": "보통",
+        "hard": "어려움",
+        "playerFirst": "플레이어 먼저",
+        "aiFirst": "AI 먼저"
+      },
+      "status": {
+        "xTurn": "X의 턴",
+        "oTurn": "O의 턴",
+        "xWins": "X 승리!",
+        "oWins": "O 승리!"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "미니맥스 게임 - 더 많은 미니 게임이 곧 출시됩니다!"
+  }
 }

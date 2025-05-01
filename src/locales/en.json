@@ -1,20 +1,47 @@
 {
-    "title": "Typed Vite React Template",
-    "subtitle": "A modern starting point for your React projects",
-    "libraries": "Included Libraries",
-    "tools": "tools",
-    "customize": "Customize this template by adding your preferred libraries",
-    "searchStarWars": "Search Star Wars characters...",
-    "loading": "Loading",
-    "noResults": "No results found",
-    "birthYear": "Birth Year",
-    "backToHome": "Back to Home",
-    "characterNotFound": "Character not found",
-    "gender": "Gender",
-    "height": "Height",
-    "mass": "Mass",
-    "hairColor": "Hair Color",
-    "eyeColor": "Eye Color",
-    "enterMessage": "Enter your message",
-    "submit": "Submit"
+  "common": {
+    "appName": "MiniMax Games",
+    "appSubtitle": "More Minigames Coming Soon!",
+    "version": "v1.0.0",
+    "loading": "Loading...",
+    "playGame": "Play Game",
+    "resetGame": "Reset Game"
+  },
+  "navigation": {
+    "menu": "Toggle menu",
+    "games": "Games",
+    "availableGames": "Available Games",
+    "selectGame": "Select a game to play"
+  },
+  "landing": {
+    "title": "MiniMax Games",
+    "subtitle": "A collection of strategic mini-games to challenge your mind and have fun",
+    "ourGames": "Our Games"
+  },
+  "games": {
+    "disappearTicTacToe": {
+      "title": "Disappear Tic Tac Toe",
+      "description": "A strategic variant of Tic-Tac-Toe where each player can only have 3 pieces on the board. When you place your 4th piece, the oldest piece disappears.",
+      "ai": {
+        "toggle": "AI Mode",
+        "on": "AI On",
+        "off": "AI Off",
+        "difficulty": "Difficulty:",
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard",
+        "playerFirst": "Player First",
+        "aiFirst": "AI First"
+      },
+      "status": {
+        "xTurn": "X's Turn",
+        "oTurn": "O's Turn",
+        "xWins": "X Wins!",
+        "oWins": "O Wins!"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "MiniMax Games - More Minigames Coming Soon!"
+  }
 }
