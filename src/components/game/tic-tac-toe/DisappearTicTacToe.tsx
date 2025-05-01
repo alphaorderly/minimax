@@ -230,13 +230,18 @@ const DisappearTicTacToe = () => {
         checkWinner();
     }, [state.turn, state.firstPlayer, state.secondPlayer]);
 
-    const toggleAI = () => {
+    const resetGame = () => {
+        setWinner(null);
         dispatch({ type: 'RESET_GAME' });
+    };
+
+    const toggleAI = () => {
+        resetGame();
         setIsAI(!isAI);
     };
 
     const togglePlayerFirst = () => {
-        dispatch({ type: 'RESET_GAME' });
+        resetGame();
         setPlayerFirst(!playerFirst);
     };
 
@@ -254,11 +259,6 @@ const DisappearTicTacToe = () => {
                 payload: { row, col, player: 'O' },
             });
         }
-    };
-
-    const resetGame = () => {
-        setWinner(null);
-        dispatch({ type: 'RESET_GAME' });
     };
 
     const soonDisappear = (row: TTTPlace, col: TTTPlace) => {
@@ -284,7 +284,7 @@ const DisappearTicTacToe = () => {
     return (
         <div className="mx-auto w-full">
             <div className="space-y-4">
-                <div className="mb-4 flex items-center justify-between">
+                <div className="mb-4 flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
                     <div className="flex items-center space-x-2">
                         <Switch
                             id="ai-toggle"
@@ -298,8 +298,9 @@ const DisappearTicTacToe = () => {
                             {isAI ? 'AI 켜짐' : 'AI 꺼짐'}
                         </label>
                     </div>
+
                     {isAI && (
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2">
                             <label
                                 htmlFor="difficulty"
                                 className="cursor-pointer text-sm font-medium"
@@ -310,7 +311,7 @@ const DisappearTicTacToe = () => {
                                 defaultValue={difficulty.toString()}
                                 onValueChange={(value: string) => {
                                     setDifficulty(Number(value));
-                                    dispatch({ type: 'RESET_GAME' });
+                                    resetGame();
                                 }}
                             >
                                 <SelectTrigger
@@ -332,9 +333,10 @@ const DisappearTicTacToe = () => {
                                 </SelectContent>
                             </Select>
                         </div>
-                    )}{' '}
+                    )}
+
                     {isAI && (
-                        <div className="flex">
+                        <div className="mt-2 flex sm:mt-0">
                             <Button
                                 onClick={
                                     playerFirst ? undefined : togglePlayerFirst
@@ -368,48 +370,55 @@ const DisappearTicTacToe = () => {
                     </h2>
                 </div>
 
-                <div className="flex flex-col items-center">
-                    {Array.from({ length: 3 }, (_, row) => (
-                        <div key={row} className="flex items-center">
-                            {Array.from({ length: 3 }, (_, col) => {
-                                const piece =
-                                    state.firstPlayer.find(
-                                        (p) => p.row === row && p.col === col
-                                    ) ||
-                                    state.secondPlayer.find(
-                                        (p) => p.row === row && p.col === col
+                <div className="flex max-w-full flex-col items-center overflow-x-hidden">
+                    <div className="mx-auto w-full max-w-[320px]">
+                        {Array.from({ length: 3 }, (_, row) => (
+                            <div
+                                key={row}
+                                className="flex items-center justify-center"
+                            >
+                                {Array.from({ length: 3 }, (_, col) => {
+                                    const piece =
+                                        state.firstPlayer.find(
+                                            (p) =>
+                                                p.row === row && p.col === col
+                                        ) ||
+                                        state.secondPlayer.find(
+                                            (p) =>
+                                                p.row === row && p.col === col
+                                        );
+                                    return (
+                                        <div
+                                            key={col}
+                                            onClick={() =>
+                                                handleCellClick(
+                                                    row as TTTPlace,
+                                                    col as TTTPlace
+                                                )
+                                            }
+                                            className={cn(
+                                                'max-size-24 min-size-12 flex size-[28vw] cursor-pointer items-center justify-center border-2 text-center text-lg font-bold transition-all sm:size-20 md:text-xl lg:size-24 lg:text-2xl',
+                                                soonDisappear(
+                                                    row as TTTPlace,
+                                                    col as TTTPlace
+                                                )
+                                                    ? 'bg-muted text-muted-foreground'
+                                                    : 'hover:bg-accent active:bg-accent/80',
+                                                piece &&
+                                                    piece.player === 'X' &&
+                                                    'text-blue-600',
+                                                piece &&
+                                                    piece.player === 'O' &&
+                                                    'text-red-600'
+                                            )}
+                                        >
+                                            {piece ? piece.player : ''}
+                                        </div>
                                     );
-                                return (
-                                    <div
-                                        key={col}
-                                        onClick={() =>
-                                            handleCellClick(
-                                                row as TTTPlace,
-                                                col as TTTPlace
-                                            )
-                                        }
-                                        className={cn(
-                                            'flex size-16 cursor-pointer items-center justify-center border-2 text-center text-lg font-bold transition-all md:size-20 md:text-xl lg:size-24 lg:text-2xl',
-                                            soonDisappear(
-                                                row as TTTPlace,
-                                                col as TTTPlace
-                                            )
-                                                ? 'bg-muted text-muted-foreground'
-                                                : 'hover:bg-accent',
-                                            piece &&
-                                                piece.player === 'X' &&
-                                                'text-blue-600',
-                                            piece &&
-                                                piece.player === 'O' &&
-                                                'text-red-600'
-                                        )}
-                                    >
-                                        {piece ? piece.player : ''}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    ))}
+                                })}
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {winner && (
